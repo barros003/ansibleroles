@@ -1,0 +1,61 @@
+---
+user: admin
+pass: deltas
+organization: "myown"
+foreman_url: https://foreman.myownsite.com.br
+
+centos7_repo:
+          - 'http://mirror.centos.org/centos/7/os/x86_64/'
+          - 'http://mirror.centos.org/centos/7/updates/x86_64/'
+          - 'http://mirror.centos.org/centos/7/extras/x86_64/'
+          - 'http://mirror.centos.org/centos/7/sclo/x86_64/rh/'
+
+oracle7_repo:
+          - 'https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/'
+          - 'https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/'
+          - 'https://yum.oracle.com/repo/OracleLinux/OL7/optional/latest/x86_64/'
+          - 'https://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64/'
+
+oracle8_repo:
+          - 'https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/'
+          - 'https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/'
+          - 'https://yum.oracle.com/repo/OracleLinux/OL8/UEKR7/x86_64/'
+
+centos7_repocreation:
+          - { reponame: 'so', repourl: 'http://mirror.centos.org/centos/7/os/x86_64/' }
+          - { reponame: 'updates', repourl: 'http://mirror.centos.org/centos/7/updates/x86_64/' }
+          - { reponame: 'extras', repourl: 'http://mirror.centos.org/centos/7/extras/x86_64/' }
+          - { reponame: 'sclo', repourl: 'http://mirror.centos.org/centos/7/sclo/x86_64/rh/' }
+
+oracle7_repocreation:
+          - { reponame: 'latest', repourl: 'https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/' }
+          - { reponame: 'uek', repourl: 'https://yum.oracle.com/repo/OracleLinux/OL7/UEKR6/x86_64/' }
+          - { reponame: 'optional', repourl: 'https://yum.oracle.com/repo/OracleLinux/OL7/optional/latest/x86_64/' }   
+          - { reponame: 'addons', repourl: 'https://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64/' }  
+
+oracle8_repocreation:
+          - { reponame: 'baseos', repourl: 'https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/' }
+          - { reponame: 'appstream', repourl: 'https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/' }
+          - { reponame: 'uek', repourl: 'https://yum.oracle.com/repo/OracleLinux/OL8/UEKR7/x86_64/' }     
+
+centos7_reponame:
+      - 'so'
+      - 'updates'
+      - 'extras'
+      - 'sclo'   
+
+oracle7_reponame:
+      - 'latest'
+      - 'uek'
+      - 'optional'
+      - 'addons'
+
+oracle8_reponame:
+      - 'baseos'
+      - 'appstream'
+      - 'uek'
+
+content_views:
+      - 'Centos7'
+      - 'Oracle7'
+      - 'Oracle8'

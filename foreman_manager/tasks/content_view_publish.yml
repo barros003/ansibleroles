@@ -1,0 +1,14 @@
+---
+- name: "Publish first version content view {{ item }}"
+  theforeman.foreman.content_view_version:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    content_view: "{{ item }}"
+    organization: "{{ organization }}"
+    lifecycle_environments:
+      - Library
+      - DEV
+      - HML
+      - PROD
+  loop: "{{ content_views }}"

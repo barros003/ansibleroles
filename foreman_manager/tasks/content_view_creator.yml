@@ -1,0 +1,85 @@
+---
+- name: "Add a DEV lifecycle environment"
+  theforeman.foreman.lifecycle_environment:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "DEV"
+    label: "DEV"
+    organization: "{{ organization }}"
+    prior: "Library"
+    description: " DEV environment"
+    state: "present"
+
+- name: "Add a HML lifecycle environment"
+  theforeman.foreman.lifecycle_environment:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "HML"
+    label: "HML"
+    organization: "{{ organization }}"
+    prior: "DEV"
+    description: "HML environment"
+    state: "present"
+
+- name: "Add a PROD lifecycle environment"
+  theforeman.foreman.lifecycle_environment:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "PROD"
+    label: "PROD"
+    organization: "{{ organization }}"
+    prior: "HML"
+    description: "PROD environment"
+    state: "present"
+
+- name: "Create content view Centos7"
+  theforeman.foreman.content_view:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"    
+    organization: "{{ organization }}"
+    name: Centos7
+    repositories:
+      - name: "so"
+        product: 'Centos7'
+      - name: "updates"
+        product: 'Centos7'
+      - name: "extras"
+        product: 'Centos7'      
+      - name: "sclo"
+        product: 'Centos7'
+      
+- name: "Create content view Oracle7"
+  theforeman.foreman.content_view:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"    
+    organization: "{{ organization }}"
+    name: Oracle7
+    repositories:
+      - name: 'latest'
+        product: 'Oracle7'
+      - name: 'uek'
+        product: 'Oracle7'
+      - name: 'optional'
+        product: 'Oracle7'      
+      - name: 'addons'
+        product: 'Oracle7'
+
+- name: "Create content view Oracle8"
+  theforeman.foreman.content_view:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"    
+    organization: "{{ organization }}"
+    name: Oracle8
+    repositories:
+      - name: 'appstream'
+        product: 'Oracle8'
+      - name: 'baseos'
+        product: 'Oracle8'
+      - name: 'uek' 
+        product: 'Oracle8'

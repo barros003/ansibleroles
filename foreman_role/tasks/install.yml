@@ -1,0 +1,36 @@
+---
+
+- name: Updating OS
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+
+- name: Installing foreman packages
+  ansible.builtin.dnf:
+    name: '{{ packages }}'
+    state: present
+    disable_gpg_check: true
+
+- name: Enable modules katello and pulp
+  ansible.builtin.command: dnf module enable katello:el8 pulpcore:el8 -y
+
+- name: Installing foreman installer
+  ansible.builtin.dnf:
+    name: "foreman-installer-katello"
+    state: present
+    disable_gpg_check: true
+
+- name: Checking chrony installation
+  ansible.builtin.dnf:
+    name: "chrony"
+    state: present
+
+- name: Checking if chronyd is running
+  ansible.builtin.systemd:
+    name: "chronyd"
+    enabled: yes
+    state: started
+
+- name: configure foreman
+  ansible.builtin.shell:
+    cmd: foreman-installer --scenario katello --foreman-initial-organization "{{ organization }}" --foreman-initial-location "{{ location }}" --foreman-initial-admin-username "{{ username }}" --foreman-initial-admin-password "{{ password }}"
