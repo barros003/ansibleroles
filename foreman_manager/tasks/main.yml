@@ -1,5 +1,16 @@
 ---
-- include_tasks: content_view_creator.yml
 
-- include_tasks: content_view_publish.yml 
-       
+- include_tasks: create_products.yml
+  tags:
+    - product
+    - all
+
+- include_tasks: content_view_creator.yml
+  tags:
+    - content_creator
+    - all
+
+- include_tasks: content_view_publish.yml  
+  tags:  
+    - content_publish
+    - all

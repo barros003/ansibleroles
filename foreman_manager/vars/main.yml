@@ -1,8 +1,8 @@
 ---
-user: admin
-pass: deltas
-organization: "myown"
-foreman_url: https://foreman.myownsite.com.br
+user: "{{ username }}"
+pass: "{{ password }}"
+organization: "{{ org }}"
+foreman_url: "{{ url }}"
 
 centos7_repo:
           - 'http://mirror.centos.org/centos/7/os/x86_64/'
@@ -53,9 +53,9 @@ oracle7_reponame:
 oracle8_reponame:
       - 'baseos'
       - 'appstream'
-      - 'uek'
+      - 'uek'       
 
 content_views:
-      - 'Centos7'
-      - 'Oracle7'
-      - 'Oracle8'
+      - Centos7
+      - Oracle7
+      - Oracle8

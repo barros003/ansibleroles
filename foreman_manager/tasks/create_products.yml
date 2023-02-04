@@ -1,0 +1,107 @@
+---
+- name: "Create daily sync plan"
+  theforeman.foreman.sync_plan:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "daily sync"
+    organization: "{{ organization }}"
+    interval: "daily"
+    enabled: true
+    sync_date: "2023-02-05 01:00:00 UTC"
+    state: present
+
+- name: "Create {{ item }} product"
+  theforeman.foreman.product:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "{{ item }}"
+    organization: "{{ organization }}"
+    sync_plan: "daily sync"
+    state: present
+  loop: 
+    - "Centos7"
+    - "Oracle7"
+    - "Oracle8"
+  
+- name: "Create repository for Centos7"
+  theforeman.foreman.repository:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "{{ item.reponame }}"
+    state: present
+    content_type: "yum"
+    product: "Centos7"
+    organization: "{{ organization }}"
+    url: "{{ item.repourl }}"    
+    download_policy: "on_demand"
+    mirror_on_sync: "true"
+    unprotected: "true"
+    verify_ssl_on_sync: "false"
+  loop: "{{ centos7_repocreation }}"
+
+- name: "Create repository for Oracle7"
+  theforeman.foreman.repository:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "{{ item.reponame }}"
+    state: present
+    content_type: "yum"
+    product: "Oracle7"
+    organization: "{{ organization }}"
+    url: "{{ item.repourl }}"    
+    download_policy: "on_demand"
+    mirror_on_sync: "true"
+    unprotected: "true"
+    verify_ssl_on_sync: "false"
+  loop: "{{ oracle7_repocreation }}"
+
+- name: "Create repository for Oracle8"
+  theforeman.foreman.repository:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    name: "{{ item.reponame }}"
+    state: present
+    content_type: "yum"
+    product: "Oracle8"
+    organization: "{{ organization }}"
+    url: "{{ item.repourl }}"    
+    download_policy: "on_demand"
+    mirror_on_sync: "true"
+    unprotected: "true"
+    verify_ssl_on_sync: "false"
+  loop: "{{ oracle8_repocreation }}"
+
+- name: "Sync repositorys Centos7"
+  theforeman.foreman.repository_sync:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    product: "Centos7"
+    repository: "{{ item }}"  
+    organization: "{{ organization }}"
+  loop: "{{ centos7_repo }}"
+  
+- name: "Sync repositorys Oracle7"
+  theforeman.foreman.repository_sync:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    product: "Oracle7"
+    repository: "{{ item }}"  
+    organization: "{{ organization }}"
+  loop: "{{ oracle7_repo }}"
+
+- name: "Sync repositorys Oracle8"
+  theforeman.foreman.repository_sync:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    server_url: "{{ foreman_url }}"
+    product: "Oracle8"
+    repository: "{{ item }}"  
+    organization: "{{ organization }}"
+  loop: "{{ oracle8_repo }}"
