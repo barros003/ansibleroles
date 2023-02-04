@@ -1,4 +1,10 @@
 ---
+user: "{{ username }}"
+pass: "{{ password }}"
+organization: "{{ org }}"
+foreman_url: "{{ url }}"
+location: "{{ location }}"
+
 packages:
  - https://yum.theforeman.org/releases/3.5/el8/x86_64/foreman-release.rpm
  - https://yum.theforeman.org/katello/4.7/katello/el8/x86_64/katello-repos-latest.rpm
