@@ -1,6 +1,5 @@
 ---
-- hosts: localhost
-  gather_facts: no
-  connection: local 
+- hosts: all
+  gather_facts: no  
   roles:
     - foreman_install
