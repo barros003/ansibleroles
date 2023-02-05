@@ -1,5 +1,5 @@
 ---
-- name: Publish first version content view "{{ item }}"
+- name: Publish first version content view
   theforeman.foreman.content_view_version:
     username: "{{ user }}"
     password: "{{ pass }}"
