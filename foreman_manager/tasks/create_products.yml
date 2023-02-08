@@ -8,7 +8,7 @@
     organization: "{{ organization }}"
     interval: "daily"
     enabled: true
-    sync_date: "2023-02-05 01:00:00 UTC"
+    sync_date: "{{ sync_start }}"
     state: present
 
 - name: "Create product"

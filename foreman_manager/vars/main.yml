@@ -3,6 +3,7 @@ user: "{{ username }}"
 pass: "{{ password }}"
 organization: "{{ org }}"
 foreman_url: "{{ url }}"
+sync_start: "2023-02-05 01:00:00 UTC"
 
 centos7_repo:
           - 'http://mirror.centos.org/centos/7/os/x86_64/'
